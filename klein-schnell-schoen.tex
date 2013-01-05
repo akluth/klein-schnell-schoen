@@ -1,0 +1,237 @@
+%% LyX 2.0.5 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[ngerman]{beamer}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ % this default might be overridden by plain title style
+ \newcommand\makebeamertitle{\frame{\maketitle}}%
+ \AtBeginDocument{
+   \let\origtableofcontents=\tableofcontents
+   \def\tableofcontents{\@ifnextchar[{\origtableofcontents}{\gobbletableofcontents}}
+   \def\gobbletableofcontents#1{\origtableofcontents}
+ }
+ \long\def\lyxframe#1{\@lyxframe#1\@lyxframestop}%
+ \def\@lyxframe{\@ifnextchar<{\@@lyxframe}{\@@lyxframe<*>}}%
+ \def\@@lyxframe<#1>{\@ifnextchar[{\@@@lyxframe<#1>}{\@@@lyxframe<#1>[]}}
+ \def\@@@lyxframe<#1>[{\@ifnextchar<{\@@@@@lyxframe<#1>[}{\@@@@lyxframe<#1>[<*>][}}
+ \def\@@@@@lyxframe<#1>[#2]{\@ifnextchar[{\@@@@lyxframe<#1>[#2]}{\@@@@lyxframe<#1>[#2][]}}
+ \long\def\@@@@lyxframe<#1>[#2][#3]#4\@lyxframestop#5\lyxframeend{%
+   \frame<#1>[#2][#3]{\frametitle{#4}#5}}
+ \newenvironment{topcolumns}{\begin{columns}[t]}{\end{columns}}
+ \def\lyxframeend{} % In case there is a superfluous frame end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usetheme{Warsaw}
+% oder ...
+
+\setbeamercovered{transparent}
+% oder auch nicht
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+
+
+
+
+\title[Klein, schön, schnell]{Klein, schön, schnell}
+
+
+\subtitle{mit Curses den eigenen Scripten eine schöne Oberfläche verleihen}
+
+
+\author[]{Alexander Kluth}
+
+
+\institute[]{}
+
+
+\date[gpw2013]{15. deutscher Perl-Workshop 2013}
+
+\makebeamertitle
+
+
+%\pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+
+%\logo{\pgfuseimage{institution-logo}}
+
+
+
+\AtBeginSubsection[]{
+
+  \frame<beamer>{ 
+
+    \frametitle{Gliederung}   
+
+    \tableofcontents[currentsection,currentsubsection] 
+
+  }
+
+}
+
+
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\lyxframeend{}\lyxframe{Gliederung}
+
+\tableofcontents{}
+
+
+
+
+\lyxframeend{}\section{Einführung}
+
+
+\lyxframeend{}\subsection{Das Ausgangsproblem}
+
+
+\lyxframeend{}\lyxframe{Überschriften sollten informativ sein\\
+Korrekte Groß-/Kleinschreibung beachten}
+
+
+\framesubtitle{Untertitel sind optional}
+\begin{itemize}
+\item Häufig Auflistungen benutzen.
+
+
+\pause{}
+
+\item Sehr kurze Sätze oder Phrasen verwenden.
+
+
+\pause{}
+
+\item Diese Overlays werden mit dem Absatzstil >>Pause<< erzeugt.
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Überschriften müssen informativ sein}
+\begin{itemize}
+\item <1->Man kann auch Overlay-Spezifikationen benutzen, um Overlays zu
+erzeugen.
+\item <3->Hiermit können Punkte in beliebiger Reihenfolge präsentiert werden.
+\item <2->Dies wird als Zweites gezeigt.
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Überschriften müssen informativ sein}
+\begin{block}
+<1->{}
+\begin{itemize}
+\item Block ohne Überschrift.
+\item Wird auf allen Overlays angezeigt.
+\end{itemize}
+\end{block}
+\begin{exampleblock}
+<2->{Ein Beispielblocktitel}
+\begin{itemize}
+\item $e^{i\pi}=-1$.
+\item $e^{i\pi/2}=i$.
+\end{itemize}
+\end{exampleblock}
+
+\lyxframeend{}\subsection{Frühere Arbeiten}
+
+
+\lyxframeend{}\lyxframe{Überschriften müssen informativ sein}
+\begin{example}%{}
+<1->Auf dem ersten Overlay.
+\end{example}%{}
+
+\begin{example}%{}
+<2->Auf dem zweiten Overlay.
+\end{example}%{}
+
+\lyxframeend{}\section{Unsere Resultate/Beitrag}
+
+
+\lyxframeend{}\subsection{Hauptresultate}
+
+
+\lyxframeend{}\lyxframe{Überschriften müssen informativ sein}
+\begin{theorem}%{}
+Auf dem ersten Overlay.
+\end{theorem}%{}
+
+\pause{}
+\begin{corollary}%{}
+Auf dem zweiten Overlay.
+\end{corollary}%{}
+
+\lyxframeend{}\lyxframe{Überschriften müssen informativ sein}
+\begin{topcolumns}%{}
+
+
+\column{5cm}
+\begin{theorem}%{}
+<1->In der linken Spalte.
+\end{theorem}%{}
+
+\column{5cm}
+\begin{corollary}%{}
+<2->In der rechten Spalte.\\
+Neue Zeile.
+\end{corollary}%{}
+\end{topcolumns}%{}
+
+\lyxframeend{}\subsection{Ideen für Beweise/Umsetzung}
+
+
+\lyxframeend{}\section*{Zusammenfassung}
+
+
+\lyxframeend{}\lyxframe{Zusammenfassung}
+
+
+\begin{itemize}
+\item Die \textcolor{red}{erste Hauptbotschaft} des Vortrags in ein bis
+zwei Zeilen.
+\item Die \textcolor{red}{zweite Hauptbotschaft} des Vortrags in ein bis
+zwei Zeilen.
+\item Eventuell noch eine \textcolor{red}{dritte Botschaft}, aber das reicht
+dann auch.
+\end{itemize}
+
+
+\vskip0pt plus.5fill
+\begin{itemize}
+\item Ausblick
+
+\begin{itemize}
+\item Etwas, was wir noch nicht lösen konnten.
+\item Noch etwas, das wir noch nicht lösen konnten.
+\end{itemize}
+\end{itemize}
+
+\lyxframeend{}
+
+\appendix
+
+\lyxframeend{}\section*{Anhang}
+
+
+\lyxframeend{}\subsection*{Weiterführende Literatur}
+
+
+\lyxframeend{}\lyxframe{[allowframebreaks]Weiterführende Literatur}
+
+\beamertemplatebookbibitems
+\begin{thebibliography}{Literaturverzeichnis}
+\bibitem{Autor1990}A. Autor. \newblock \emph{Einführung in das Präsentationswesen}.
+\newblock Klein-Verlag, 1990.\beamertemplatearticlebibitems
+
+\bibitem{Jemand2002}S. Jemand.\newblock On this and that\emph{.}
+\newblock\emph{Journal on This and That}. 2(1):50--100, 2000.
+
+\end{thebibliography}
+
+\lyxframeend{}
+\end{document}
