@@ -558,7 +558,7 @@ Eine Überschrift fasst einen Rahmen verständlich zusammen.
 \end_layout
 
 \begin_layout Itemize
-Zusammengehackten Tools eine schöne Oberfläche verleihen
+Zusammengehackten Tools einfacher benutzbar machen
 \end_layout
 
 \begin_deeper
@@ -568,7 +568,7 @@ Zusammengehackten Tools eine schöne Oberfläche verleihen
 
 \end_deeper
 \begin_layout Itemize
-Benutzung für eventuell andere intiutiver machen
+Benutzung für eventuell andere Nutzer intiutiver machen
 \end_layout
 
 \begin_deeper
@@ -578,115 +578,41 @@ Benutzung für eventuell andere intiutiver machen
 
 \end_deeper
 \begin_layout Itemize
-opjfwpeofjweopfjwepofjwepofj
+Optische Aufwertung
 \end_layout
 
 \begin_layout BeginFrame
-Überschriften müssen informativ sein
-\end_layout
-
-\begin_layout BeginFrame
-Überschriften müssen informativ sein
-\end_layout
-
-\begin_layout Block
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-<1->
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Block ohne Überschrift.
+Wieso eigentlich? Motivation!
 \end_layout
 
 \begin_layout Itemize
-Wird auf allen Overlays angezeigt.
+Curses::UI ist einfach
 \end_layout
 
-\end_deeper
-\begin_layout ExampleBlock
-\begin_inset ERT
-status collapsed
+\begin_layout Pause
 
-\begin_layout Plain Layout
-
-<2->
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-Ein Beispielblocktitel
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\begin_inset Formula $e^{i\pi}=-1$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $e^{i\pi/2}=i$
-\end_inset
-
-.
+Gute Dokumentation
 \end_layout
 
-\end_deeper
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Geringer Overhead
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Auch auf Umgebungen ohne X-Server nutzbar
+\end_layout
+
 \begin_layout Subsection
 Warum Curses?
 \end_layout
@@ -715,80 +641,99 @@ Lange Antwort:
 Ziel ist nicht höchste Benutzerfreundlichkeit
 \end_layout
 
-\begin_layout Section
-Unsere Resultate/Beitrag
+\begin_layout Pause
+
 \end_layout
 
-\begin_layout Subsection
-Hauptresultate
-\end_layout
-
-\begin_layout BeginFrame
-Überschriften müssen informativ sein
-\end_layout
-
-\begin_layout Theorem
-Auf dem ersten Overlay.
+\begin_layout Itemize
+Eigentlichen Sinn des Programms nicht verschleiern
 \end_layout
 
 \begin_layout Pause
 
 \end_layout
 
-\begin_layout Corollary
-Auf dem zweiten Overlay.
+\begin_layout Itemize
+Mit so wenig Overhead wie möglich große Wirkung erzielen
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Möglichkeit der Ausführung auf Rechnern ohne X-Server
 \end_layout
 
 \begin_layout BeginFrame
-Überschriften müssen informativ sein
+Warum aber dann ausgerechnet Curses?
 \end_layout
 
-\begin_layout ColumnsTopAligned
-
-\end_layout
-
-\begin_deeper
-\begin_layout Column
-5cm
-\end_layout
-
-\begin_layout Theorem
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-<1->
-\end_layout
-
+\begin_layout Itemize
+Bekannt und 
+\begin_inset Quotes ald
 \end_inset
 
-In der linken Spalte.
-\end_layout
-
-\begin_layout Column
-5cm
-\end_layout
-
-\begin_layout Corollary
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-<2->
-\end_layout
-
+beliebt
+\begin_inset Quotes ard
 \end_inset
 
-In der rechten Spalte.
-\begin_inset Newline newline
-\end_inset
 
-Neue Zeile.
 \end_layout
 
-\end_deeper
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Gute Dokumentation
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Wenig Code, große Wirkung
+\end_layout
+
+\begin_layout Section
+Einführung in Curses
+\end_layout
+
+\begin_layout Subsection
+Kurze Geschichte zum Aufbau
+\end_layout
+
+\begin_layout BeginFrame
+Curses::UI und sein Vater
+\end_layout
+
+\begin_layout Itemize
+Curses::UI basiert auf dem Paket Curses
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Curses ist das Interface zur curses(3) Library eures Systems
+\end_layout
+
+\begin_layout BeginFrame
+Curses::UI und sein Vater
+\end_layout
+
+\begin_layout ExampleBlock
+
+\end_layout
+
+\begin_layout ExampleBlock
+Curses::UI stellt ein objektorientiertes Interface und eine Abstaktionsschicht
+ zu Curses dar
+\end_layout
+
 \begin_layout Subsection
 Ideen für Beweise/Umsetzung
 \end_layout
