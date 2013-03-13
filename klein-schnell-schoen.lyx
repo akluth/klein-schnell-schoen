@@ -605,14 +605,6 @@ Gute Dokumentation
 Geringer Overhead
 \end_layout
 
-\begin_layout Pause
-
-\end_layout
-
-\begin_layout Itemize
-Auch auf Umgebungen ohne X-Server nutzbar
-\end_layout
-
 \begin_layout Subsection
 Warum Curses?
 \end_layout
@@ -622,7 +614,14 @@ Warum Curses, warum nicht Tk? Warum keine GUI?
 \end_layout
 
 \begin_layout Block
-Kurze Antwort
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+Kurze Antwort:
 \end_layout
 
 \begin_layout Block
@@ -654,47 +653,7 @@ Eigentlichen Sinn des Programms nicht verschleiern
 \end_layout
 
 \begin_layout Itemize
-Mit so wenig Overhead wie möglich große Wirkung erzielen
-\end_layout
-
-\begin_layout Pause
-
-\end_layout
-
-\begin_layout Itemize
 Möglichkeit der Ausführung auf Rechnern ohne X-Server
-\end_layout
-
-\begin_layout BeginFrame
-Warum aber dann ausgerechnet Curses?
-\end_layout
-
-\begin_layout Itemize
-Bekannt und 
-\begin_inset Quotes ald
-\end_inset
-
-beliebt
-\begin_inset Quotes ard
-\end_inset
-
-
-\end_layout
-
-\begin_layout Pause
-
-\end_layout
-
-\begin_layout Itemize
-Gute Dokumentation
-\end_layout
-
-\begin_layout Pause
-
-\end_layout
-
-\begin_layout Itemize
-Wenig Code, große Wirkung
 \end_layout
 
 \begin_layout Section
@@ -706,7 +665,7 @@ Kurze Geschichte zum Aufbau
 \end_layout
 
 \begin_layout BeginFrame
-Curses::UI und sein Vater
+Curses::UI und der große Bruder
 \end_layout
 
 \begin_layout Itemize
@@ -718,24 +677,1410 @@ Curses::UI basiert auf dem Paket Curses
 \end_layout
 
 \begin_layout Itemize
-Curses ist das Interface zur curses(3) Library eures Systems
+Curses ist das Interface zur curses(3) Library des Systems
 \end_layout
 
 \begin_layout BeginFrame
-Curses::UI und sein Vater
+Curses::UI hat viel zu bieten
 \end_layout
 
-\begin_layout ExampleBlock
+\begin_layout Itemize
+Objektorientiertes Interface
+\end_layout
+
+\begin_layout Pause
 
 \end_layout
 
-\begin_layout ExampleBlock
-Curses::UI stellt ein objektorientiertes Interface und eine Abstaktionsschicht
- zu Curses dar
+\begin_layout Itemize
+Abstraktionsschicht zu Curses
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Viele Out-of-the-Box Widgets
 \end_layout
 
 \begin_layout Subsection
-Ideen für Beweise/Umsetzung
+Was Curses::UI ausmacht: Die Widgets, Teil 1
+\end_layout
+
+\begin_layout BeginFrame
+Am Anfang war das Fenster - Curses::UI::Window
+\end_layout
+
+\begin_layout Itemize
+Das Window-Widget selbst ist ein Widget
+\end_layout
+
+\begin_layout Itemize
+Weitere Widgets können dem Window-Widget hinzugefügt werden
+\end_layout
+
+\begin_layout Itemize
+Stellt den Applikations
+\begin_inset Quotes ard
+\end_inset
+
+rahmen
+\begin_inset Quotes ard
+\end_inset
+
+ dar
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+use Curses::UI;
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+my $cui = new Curses::UI;
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+my $win = $cui->add(
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+	
+\color red
+'mainWindow'
+\color inherit
+,	 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+	
+\color blue
+'Window'
+\color magenta
+	
+\color inherit
+		 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+	
+\color magenta
+-fg => 'green'
+\color inherit
+	 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Text mich voll - Curses::UI::Label
+\end_layout
+
+\begin_layout Itemize
+Klassische Label wie in der 
+\begin_inset Quotes ald
+\end_inset
+
+großen
+\begin_inset Quotes ard
+\end_inset
+
+ GUI-Programmierung
+\end_layout
+
+\begin_layout Itemize
+Darstellung von Text innerhalb eines Window-Widgets
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+my $label = $win->add(
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color red
+'helloLabel',
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color blue
+'Label',
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color magenta
+-text => 'Hallo Welt!',
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\color magenta
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-x => 1, -y => 1
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Und nun alles zusammen - Hallo Welt!
+\end_layout
+
+\begin_layout Standard
+Es könnte einfacher nicht sein:
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+#!/usr/bin/perl
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+use strict;
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+use warnings;
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+use Curses::UI;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+my $cui = new Curses::UI;
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+my $win = $cui->add(
+\color red
+'mainWindow'
+\color magenta
+, 
+\color blue
+'Window'
+\color green
+, 
+\color magenta
+-fg => 'green'
+\color inherit
+);
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+my $label = $win->add(
+\color red
+'helloLabel',
+\color magenta
+ 
+\color blue
+'Label',
+\color green
+ 
+\color magenta
+-text => 'Hallo Welt!', -x => 1, -y => 1
+\color inherit
+);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+$cui->set_binding(sub { exit 0; }, 
+\begin_inset Quotes ald
+\end_inset
+
+
+\backslash
+cC
+\begin_inset Quotes ard
+\end_inset
+
+, 
+\begin_inset Quotes ald
+\end_inset
+
+q
+\begin_inset Quotes ard
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+$cui->mainloop();
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Was Curses::UI ausmacht - Die Widgets, Teil 2
+\end_layout
+
+\begin_layout BeginFrame
+Alles geordnet - Curses::UI::ListBox
+\end_layout
+
+\begin_layout Itemize
+Ordnen von Elementen in einer Liste
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+my $list = $win->add(
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color red
+"listBox", 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color blue
+"Listbox", 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color magenta
+-fg => "white", 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\color magenta
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-border => 1
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+); 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Hinzufügen von Elementen via ->values(
+\backslash
+@arrayMitContent)
+\end_layout
+
+\begin_layout BeginFrame
+Textsicher - Curses::UI::TextViewer
+\end_layout
+
+\begin_layout Itemize
+Darstellung von Freitext in einer Box
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+my $text = $main->add(
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color red
+"textBox",
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color blue
+"TextViewer",
+\color inherit
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color magenta
+-fg => "white",
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\color magenta
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-border => 1
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Hinzufügen von Text mit ->text($hinzuzufügenderText)
+\end_layout
+
+\begin_layout BeginFrame
+Zusammenfassung - Widgets
+\end_layout
+
+\begin_layout Itemize
+Widgets haben meist den Aufbau ID, Typ, Optionen
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Neben den vorgestellten viele Weitere (Kalender, Filebrowser, Progressbar,
+ Radiobuttonbox, TextEditor)
+\end_layout
+
+\begin_layout Subsection
+Bindings und Dialoge
+\end_layout
+
+\begin_layout BeginFrame
+Auf Knopfdruck - Bindings
+\end_layout
+
+\begin_layout Itemize
+Reaktionen auf Tastendruck kann für verschiedene Widgets eingestellt werden
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Auf Knopfdruck wird eine vordefinierte Funktion aufgerufen
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Vorrang hat das Widget, welches den Fokus hat
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+$cui->set_binding(
+\color red
+sub { exit 0; }
+\color inherit
+, 
+\color magenta
+
+\begin_inset Quotes ald
+\end_inset
+
+
+\backslash
+cC
+\begin_inset Quotes ard
+\end_inset
+
+, 
+\begin_inset Quotes ald
+\end_inset
+
+q
+\begin_inset Quotes ard
+\end_inset
+
+
+\color inherit
+);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+In Szene gesetzt - Dialoge
+\end_layout
+
+\begin_layout Itemize
+Vielzahl von Out-of-the-Box-Dialogen (Question, Status, Filebrowser, Calendar)
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Eigener Dialog mit eigenen Widgets möglich
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Pro Dialog-Typ eigene Methode
+\end_layout
+
+\begin_layout BeginFrame
+In Szene gesetzt - Dialoge
+\end_layout
+
+\begin_layout Itemize
+Beispiel:
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+$question = $cui->question(
+\begin_inset Quotes ald
+\end_inset
+
+Alles gut hier?
+\begin_inset Quotes ard
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+$status = $cui->status(
+\begin_inset Quotes ald
+\end_inset
+
+Alles gut hier!
+\begin_inset Quotes ard
+\end_inset
+
+);
+\end_layout
+
+\begin_layout BeginFrame
+In Szene gesetzt - Dialoge
+\end_layout
+
+\begin_layout Itemize
+Komplexere Dialoge sind über die Methode ->dialog() realisierbar:
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+my $ja = $cui->dialog(
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-message => "Wirklich alles gut?", 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-buttons => [
+\begin_inset Quotes ald
+\end_inset
+
+Ja
+\begin_inset Quotes ard
+\end_inset
+
+, 
+\begin_inset Quotes ard
+\end_inset
+
+Nein
+\begin_inset Quotes ard
+\end_inset
+
+], 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-values => [1, 0], 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-title => 
+\begin_inset Quotes ald
+\end_inset
+
+Jetzt will ich's aber wissen
+\begin_inset Quotes ard
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+);
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+if ($ja) { # Alles gut, Wahnsinnscode folgt } 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Weiterführendes
+\end_layout
+
+\begin_layout Subsection
+Ein einfaches Layout
+\end_layout
+
+\begin_layout BeginFrame
+Nicht direkt möglich...
+\end_layout
+
+\begin_layout Itemize
+Kein direktes Layouting möglich
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Mit einfachen width/height-Berechnungen vieles machbar
+\end_layout
+
+\begin_layout BeginFrame
+...aber machbar...
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\color red
+my $max_height = $main->height(); 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\color red
+my $max_width = $main->width();
+\color inherit
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+my $project_list = $main->add("Projects", "Listbox", 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-border => 1, 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color blue
+-x => (
+\color red
+$max_width
+\color blue
+ / 2), 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-height => int (
+\color red
+$max_height
+\color blue
+ / 2)); 
+\color inherit
+
+\begin_inset Newline newline
+\end_inset
+
+my $ticket_list = $main->add("Tickets", "Listbox", 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-border => 1, 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color blue
+-y => 0, 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\color blue
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-height => int (
+\color red
+$max_height
+\color blue
+ / 2), 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\color blue
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-width => int (
+\color red
+$max_width
+\color blue
+ / 2)); 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+my $box = $main->add("Content", "TextViewer", 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-border => 1, 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\color blue
+-y => (
+\color red
+$max_height
+\color blue
+ / 2), 
+\end_layout
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+\color blue
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+-height => (
+\color red
+$max_height
+\color blue
+ / 2));
+\color inherit
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+...und formschön!
+\end_layout
+
+\begin_layout Standard
+(Terminalfenster öffnet sich nun vollautomatisch durch Handbetätigung)
+\end_layout
+
+\begin_layout Subsection
+Fallstricke
+\end_layout
+
+\begin_layout BeginFrame
+Es ist nicht alles Gold was, glänzt
+\end_layout
+
+\begin_layout Itemize
+Ausrichtung anhand von X- und Y-Koordinaten kann mühsam sein
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Bei gravierenden Fehlern passiert nichts
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Von Curses bekannte Fallstricke (Dimensionen)
 \end_layout
 
 \begin_layout Section*
@@ -760,33 +2105,19 @@ Die Zusammenfassung sollte sehr kurz sein.
 \end_layout
 
 \begin_layout Itemize
-Die
+
 \color none
- 
-\color red
-erste Hauptbotschaft
-\color none
- des Vortrags in ein bis zwei Zeilen.
+Curses::UI ist einfach, schnell und unkompliziert
 \end_layout
 
 \begin_layout Itemize
-Die
-\color none
- 
-\color red
-zweite Hauptbotschaft
-\color none
- des Vortrags in ein bis zwei Zeilen.
+Erweiterung von bestehenden Scripten einfach möglich
 \end_layout
 
 \begin_layout Itemize
-Eventuell noch eine
+
 \color none
- 
-\color red
-dritte Botschaft
-\color none
-, aber das reicht dann auch.
+Dank hervorragender Dokumentation keine offenen Fragen
 \end_layout
 
 \begin_layout Standard
@@ -819,197 +2150,27 @@ vskip0pt plus.5fill
 \end_layout
 
 \begin_layout Itemize
-Ausblick
+Weiterführendes
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Etwas, was wir noch nicht lösen konnten.
+Unter https://github.com/deralex/hardticks 
+\begin_inset Quotes ald
+\end_inset
+
+Mini
+\begin_inset Quotes ard
+\end_inset
+
+-Bugzilla
 \end_layout
 
 \begin_layout Itemize
-Noch etwas, das wir noch nicht lösen konnten.
+Unter https://github.com/deralex/klein-schoen-schnell
 \end_layout
 
 \end_deeper
-\begin_layout EndFrame
-
-\end_layout
-
-\begin_layout Section*
-\start_of_appendix
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Alles Nachfolgende ist optional und üblicherweise nicht nötig.
-\end_layout
-
-\end_inset
-
-Anhang
-\end_layout
-
-\begin_layout Subsection*
-Weiterführende Literatur
-\end_layout
-
-\begin_layout BeginFrame
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-[allowframebreaks]
-\end_layout
-
-\end_inset
-
-Weiterführende Literatur
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-beamertemplatebookbibitems
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Anfangen sollte man mit Übersichtswerken.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Literaturverzeichnis
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "Autor1990"
-
-\end_inset
-
-A.
- Autor.
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-newblock
-\end_layout
-
-\end_inset
-
- 
-\emph on
-Einführung in das Präsentationswesen
-\emph default
-.
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-newblock
-\end_layout
-
-\end_inset
-
- Klein-Verlag, 1990.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-beamertemplatearticlebibitems
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Vertiefende Literatur kommt später.
- Die Liste sollte kurz sein.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Literaturverzeichnis
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "Jemand2002"
-
-\end_inset
-
-S.
- Jemand.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-newblock
-\end_layout
-
-\end_inset
-
- On this and that
-\emph on
-.
-
-\emph default
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-newblock
-\end_layout
-
-\end_inset
-
-
-\emph on
-Journal on This and That
-\emph default
-.
- 2(1):50--100, 2000.
-\end_layout
-
 \begin_layout EndFrame
 
 \end_layout
