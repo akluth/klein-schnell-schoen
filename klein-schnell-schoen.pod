@@ -1,0 +1,157 @@
+=head1 Klein, schnell, schön - mit Curses den eigenen Scripten eine schöne Oberfläche verleihen
+
+=head2 Abstract
+
+Wer kennt das nicht: Man braucht mal eben ein kleines Tool, ein simples Script, 
+um eine Aufgabe zu erfüllen. Dafür die Shell hernehmen? Das ist nicht unser Ding: 
+Wir machen so etwas schnell und einfach in Perl.
+
+Dieser Beitrag zeigt mit Hilfe von Curses, wie man mit Hilfe von Curses seinen 
+gehackten Tools eine schnieke Oberfläche verleiht und so aus einem kleinen Hack 
+schnell ein robustes und einfach zu verwendendes Programm macht.
+
+Als Beispiel wird ein kleines Bugtracking-System alá Bugzilla/Redmine in Perl 
+nachgebaut - mit Curses, SQLite, Mailing-Versand und Export in verschiedene Formate. 
+
+=head2 Warum Curses, warum nicht Tk? Warum keine GUI?
+
+Kurze Antwort: 
+Weil wir nix Klicki-Bunti, wir sind Perl-Hacker die mit der Konsole arbeiten.
+
+Lange Antwort:
+Das Ziel ist es nicht, unsere zusammegehackten Scripte mit einer grafischen Oberfläche
+zu versehen, natürlich mit Tooltips, einem Spalshscreen beim Start und einer Büroklammer
+am Seitenfenster, die leicht schizophren mit nützlichen Hinweisen aufwartet, damit selbst 
+die Sekträterin vom kaufmännischen Leiter unser Script ausführen kann - 
+
+Das Ziel ist, Scripten mit einer simplen aber dennoch effektiven Oberfläche zu
+versehen, und das mit möglichst wenig Overhead. Auch gilt es die Ängste vor Curses zu nehmen,
+welche sich vor allem in den mit C vorbelasteten Seelen der Gemeinde verankert haben.
+
+=head2 Ist das für jedes Script geeignet?
+
+Beileibe nein - stellt euch vor, ihr schreibt einen Dreizeiler, da eine UI drumzupacken wäre
+das Gleiche wie Java für die Programmierung eines BIOS zu nutzen. Der Einsatzgebiet betrifft
+vor allem die Kombination viel genutzter Scripte zu einem größeren Programm oder um einem
+viel genutzten Script eine intiutivere Oberfläche zu verleihen, welches die Benutzung 
+angenehmer macht und die Darstellung von Daten vereinfacht bzw. verschönert.
+
+=head2 Was brauche ich zum Starten?
+
+Zum Starten benötigt ihr in jedem Falle C<Curses::UI>, eine kleine Abstrationsschicht über Curses,
+die es ermöglicht vorgefertigte Widgets (Notebook, Buttons, Listviews etc.) zu nutzen.
+
+Nach der Installation via CPAN ist die Nutzung sehr einfach, in folgendem Beispiel erstellen wir 
+ein einfaches Fenster mit den berühmt-berüchtigten Worten "Hello World":
+
+
+ #!/usr/bin/perl
+ use strict;
+ use warnings;
+ use Curses::UI;
+
+ my $cui = new Curses::UI(-clear_on_exit => 0, -color_support => 1);
+ my $window = $cui->add('main', 'Window', -fg => 'green');
+ my $label = $window->add('Hello', 'Label', -text => "Hallo Welt!", -x => 1, -y => 1);
+
+ $cui->set_binding(sub {exit 0;}, "\cC", "q");
+
+ $cui->mainloop();
+
+Dieses kleine Programm erzeugt ein neues Fenster, schreibt "Hallo Welt!" oben linksin die Ecke
+und lässt sich per Tastendruck auf "q" oder STRG+C beenden.
+
+Wie immer bieten die Manpages hervorragende Dokumentation zu allen Themen, besonders zu den einzelnen
+Widgets, eine wichtige Ressource.
+
+=head2 Welche Widgets beinhaltet Curses::UI?
+
+Eine kurze Auswahl wichtiger Widgets:
+
+=over
+
+=item * L<Curses::UI::Label>
+Haben wir oben schon eingesetzt, wird für Labels gebraucht
+
+=item * L<Curses::UI::Menubar>
+Eine Menüzeile, welche verschiedene Untermenüs zur Verfügung stellt
+
+=item * L<Curses::UI::Listbox>
+Eine ListBox zum Anzeigen von Elementen (wird in dem kleinen Ticketsystem des Vortrags benutzt)
+
+=item * L<Curses::UI::Buttonbox>
+Einen oder mehrere Buttons erstellt man mit diesem Widgets
+
+=item * L<Curses::UI::Notebook>
+Stellt Tab-Funktionalität zur Verfügung
+
+=back
+
+=head2 So etwas wie Layout
+
+Ein direktes Layout-System gibt es bei Curses::UI nicht, was aber nicht weiter tragisch ist - folgendes
+Beispiel erstellt z.B. drei Panels im Fenster:
+
+ my $project_list = $main->add("Projects", "Listbox", 
+     -fg => "white", 
+     -border => 1,
+     -x => ($max_width / 2),
+     -height => int ($max_height / 2)
+ );
+ 
+ my $ticket_list = $main->add("Tickets", "Listbox",
+     -fg => "white", 
+     -border => 1,
+     -y => 0,
+     -height => int ($max_height / 2),
+     -width => int ($max_width / 2)
+ );
+ 
+ my $textbox = $main->add("Content", "TextViewer", 
+     -fg => "white", 
+     -border => 1,
+     -y => ($max_height / 2), 
+    -height => ($max_height / 2)
+ );
+
+
+Dieses Beispiel erstellt ein dreteiliges Layout mit zwei Boxen im oberen und einer langen
+Box im unteren Bildschirmrand. Durch diese lassen sich einfach von Haus aus per Tabulator
+durchnavigieren.
+
+Mit der Methode C<values()> bzw. der Methode C<text()> können bei den Listboxen bzw. bei dem
+TextViewer Inhalt hinzugefügt werden.
+
+
+=head2 Eventhandling und Dialoge
+
+Eventhandling und Dialoge sind ebenfalls denkbar einfach. Wie schon im Hello World-Beispiel gezeigt
+erstellt man per C<set_binding()> ein neues Binding. Um zum Beispiel eine Methode bei Tastendruck
+auf "a" aufzurufen:
+
+ $cui->add_binding(\&open_help, "?");
+
+Nun ruft das Drücken von ? die Methode C<open_help> auf, in welcher wir spontan einen kleinen
+Hilfedialog definieren:
+
+ sub open_help {
+     $cui->dialog(
+        -title => "Hilfe",
+        -message => "? - zeigt diese Hilfe\n" . "q - beendet den Dialog/das Programm"
+     );
+ }   
+
+Drücken wir nun im Hauptprogramm auf das Fragezeichen öffnet sich ein kleiner aber feiner
+modaler Dialog.
+
+
+=head2 Ressourcen, Links und weiterführendes
+
+Wie man sieht ist Curses::UI gar nicht schwer, ganz im Gegenteil. Was man damit alles anstellen
+kann kann auf L<https://github.com/deralex/hardticks/> gesehen werden - dort wird ein kleines
+Ticketing-System ähnlich Bugzilla/Redmine realisiert mitsamt SQLite-Anbindung, Mailversand und
+Export in verschiedene Formate.
+
+Den kompletten Vortrag mit Vorstellung des Programms ist unter L<https://github.com/deralex/klein-schnell-schoen>
+einsehbar.
+
